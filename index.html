@@ -1,0 +1,650 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Week</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}details,main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}
+
+    /* page styles */
+    /* apply a natural box layout model to all elements, but allowing components to change */
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }/* end */
+    body {
+        margin: 0;
+        padding: 0 2vw 2vw 2vw;
+        overflow-x: hidden;
+        font-family: sans-serif;
+        color: #333;
+        max-width: 500px;
+    }
+    main {
+        padding-top: 16px;
+    }
+    header {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+    header h2 {
+        padding: 8px 6px;
+        margin: 20px 0 0 0;
+        background: #E6E4E4;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        text-align: center;
+        line-height: 1;
+        font-weight: 100;
+        font-size: 1em;
+    }
+
+    .swatch1 {
+        background-color: #00281f;
+    }
+    .swatch2 {
+        background-color: #037367;
+    }
+    .swatch3 {
+        background-color: #7b895b;
+    }
+    .swatch4 {
+        background-color: #bea24e;
+    }
+    .swatch5 {
+        background-color: #ddcea2/*#7bd4cc*/;
+    }
+
+    .pho-header {
+        width: calc(100% + 4vw);
+        margin-left: -2vw;
+    }
+    .semester {
+        display: flex;
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        background: #f4f4f4;
+        background: linear-gradient(to bottom, #f4f4f4 0%,#ffffff 100%);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    .semester::-webkit-scrollbar {
+        display: none;
+    }
+    .week {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background: #f4f4f4;
+        width: 32vw;
+        max-width: 150px;
+        height: 32vw;
+        max-height: 150px;
+        text-align: center;
+        scroll-snap-align: center;
+    }
+    .week.selected {
+        position: relative;
+        background: #fff;
+        overflow: visible;
+        transform: scale(1.1) translateY(3px);
+    }
+    .week.selected::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        right: 3px;
+        bottom: 5px;
+        left: 3px;
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
+    }
+    .week h3 {
+        font-weight: 400;
+        font-size: 14px;
+        margin: 8px 0 2px 0;
+    }
+    .week-date-range {
+        font-size: 10px;
+        margin: 0;
+    }
+    .infograph {
+        padding: 0 16px;
+        margin: auto 0 6px 0;
+        list-style: none;
+    }
+    .infograph li {
+        font-size: 0;
+        margin-bottom: 1px;
+    }
+    .value-10 {
+        height: 4px;
+    }
+    .value-20 {
+        height: 8px;
+    }
+    .value-30 {
+        height: 12px;
+    }
+    .value-40 {
+        height: 16px;
+    }
+    .value-50 {
+        height: 20px;
+    }
+    .details {
+        display: none;
+    }
+    table {
+        width: 100%;
+    }
+    thead td {
+        background-color: #fff;
+        padding: 8px;
+        font-size: 14px;
+    }
+    tbody {
+        display: flex;
+        flex-direction: column;
+    }
+    tbody tr {
+        display: flex;
+        align-content: stretch;
+        height: 80px;
+        border-bottom: 1px solid #fff;
+    }
+    tbody td {
+        vertical-align: middle;
+    }
+    tbody td.key {
+        color: #fff;
+        text-align: center;
+        width: 80px;
+        flex: 0 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    tbody td.key-tut {
+        background-image: url(key.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40%;
+    }
+    tbody td.description {
+        background-color: #f4f4f4;
+        padding: 8px;
+        flex: 1 0;
+        overflow-y: auto;
+    }
+    tbody p {
+        margin: 4px 0;
+    }
+    p.unit  {
+        font-size: 16px;
+        font-weight: 100;
+    }
+    p.assement-description {
+        font-size: 0.8em;
+    }
+    /* end page styles */
+  </style>
+</head>
+
+<body>
+    <header>
+        <img class="pho-header" src="pho-header.png" alt="" />
+        <h2>Semester 1</h2>
+        <ul class="semester">
+            <li class="week" data-week="week10">
+                <h3>Week 10</h3>
+                <p class="week-date-range">Mar 4 – 10</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week11">
+                <h3>Week 11</h3>
+                <p class="week-date-range">Mar 11 – 17</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week12">
+                <h3>Week 12</h3>
+                <p class="week-date-range">Mar 18 – 24</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week13">
+                <h3>Week 13</h3>
+                <p class="week-date-range">Mar 25 – 31</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week14">
+                <h3>Week 14</h3>
+                <p class="week-date-range">Apr 1 – 7</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week15">
+                <h3>Week 15</h3>
+                <p class="week-date-range">Apr 8 – 14</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week16">
+                <h3>Week 16</h3>
+                <p class="week-date-range">Apr 15 – 21</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week17">
+                <h3>Week 17</h3>
+                <p class="week-date-range">Apr 22 – 28</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week18">
+                <h3>Week 18</h3>
+                <p class="week-date-range">Apr 29 – May 5</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week19">
+                <h3>Week 19</h3>
+                <p class="week-date-range">May 6 – 12</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week20">
+                <h3>Week 20</h3>
+                <p class="week-date-range">May 13 – 19</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week21">
+                <h3>Week 21</h3>
+                <p class="week-date-range">May 20 – 26</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week22">
+                <h3>Week 22</h3>
+                <p class="week-date-range">May 27 – June 2</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week23">
+                <h3>Week 23</h3>
+                <p class="week-date-range">June 3 – 9</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week24">
+                <h3>Week 24</h3>
+                <p class="week-date-range">June 10 – 16</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week25">
+                <h3>Week 25</h3>
+                <p class="week-date-range">June 17 – 23</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+            <li class="week" data-week="week26">
+                <h3>Week 25</h3>
+                <p class="week-date-range">June 24 – 30</p>
+                <ul class="infograph">
+
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div id="week10" class="details">
+        </div>
+        <div id="week11" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Monday March 11</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="key key-tut"></td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">Key tutorial<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week12" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Monday March 18</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Wednesday March 20</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week13" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Monday March 25</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Wednesday March 27</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week14" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Monday April 1</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Wednesday Apr 3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week15" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Wednesday April 10</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week16" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Wednesday April 17</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">20%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">One 1,500-word Common Law assignment to be submitted online<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week17" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Tuesday April 24</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">30%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Sport organisation policy analysis (group assessment)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week18" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Tuesday April 30</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">40%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SDT</p>
+                            <p class="assement-description">Sport development program plan (equivalent  2000 words per student)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week19" class="details">
+        </div>
+        <div id="week20" class="details">
+        </div>
+        <div id="week21" class="details">
+        </div>
+        <div id="week22" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Friday May 31</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">60%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SDT</p>
+                            <p class="assement-description">Individual paper (2500 words)<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week23" class="details">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <td colspan="2">Friday June 7</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="key">50%</td>
+                        <td class="description">
+                            <p class="unit">MGT2SPF</p>
+                            <p class="assement-description">Government sport policy analysis (individual assessment)<p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="key">60%</td>
+                        <td class="description">
+                            <p class="unit">LST2BSL</p>
+                            <p class="assement-description">One 2-hour final examination<p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="week24" class="details">
+        </div>
+        <div id="week25" class="details">
+        </div>
+        <div id="week26" class="details">
+        </div>
+    </main>
+    <script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script>
+    $('documment').ready(function(){
+        /*
+         * Event hadler for click on week
+         */
+        $('.week').on('click', function() {
+            if ($(this).hasClass('selected') == false) {
+                var week = $(this).attr('data-week');
+                $('.week').removeClass('selected');
+                $(this).addClass('selected');
+                $('.details').fadeOut().promise().done(function() {
+                    $('#' + week).fadeIn();
+                });
+            }
+        });
+        /*
+         * Trigger event hadler for click on week to show current week
+         * -- This is triggering week 10 for demo
+         */
+        $('.week[data-week="week11"]').trigger('click');
+
+        /*
+         * Build infograph from week details table
+         * Set color of table based on subject
+         */
+        $('.details').each(function(){
+            if ($(this).children().length) {
+                var week = $(this).attr('id');
+                $(this).find('tbody tr').each(function(){
+                    var key = $(this).find('.key').text();
+                    // remove % sign from percent value convert to px height
+                    barHeight = key.substring(0, key.length - 1)/10*4;
+                    var unit = $(this).find('.unit').text();
+                    switch (unit) {
+                        case 'LST2BSL':
+                            var swatch = 'swatch1';
+                            break;
+                        case 'MGT2SDT':
+                            var swatch = 'swatch2';
+                            break;
+                        case 'MGT2SPF':
+                            var swatch = 'swatch3';
+                            break;
+                        case 'NA':
+                            var swatch = 'swatch4';
+                            break;
+                        case 'NIN':
+                            var swatch = 'swatch5';
+                            break;
+                    }
+                    $(this).find('.key').addClass(swatch);
+                    addToInfograph(week, barHeight, unit, swatch);
+                });
+            } else {
+                $(this).append('<p style="text-align: center;">No assessment this week</p>');
+            }
+        });
+        function addToInfograph(week, barHeight, unit, swatch) {
+            $('.week[data-week="'+ week +'"] .infograph').append('<li class="' + swatch +'" style="height: '+ barHeight +'px">'+ unit +'</li>');
+        }
+    });
+    </script>
+
+</html>
