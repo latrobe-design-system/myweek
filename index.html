@@ -92,6 +92,13 @@
         text-align: center;
         scroll-snap-align: center;
     }
+    .week.showKey:before {
+        content: "";
+        background-image: url(key-green.svg);
+        background-repeat: no-repeat;
+        background-size: 28px;
+        background-position: top 8px right 4px;
+    }
     .week.selected {
         position: relative;
         background: #fff;
@@ -613,9 +620,13 @@
             if ($(this).children().length) {
                 var week = $(this).attr('id');
                 $(this).find('tbody tr').each(function(){
-                    var key = $(this).find('.key').text();
+                    var key = $(this).find('.key');
+                    if ( key.hasClass( 'key-tut') ) {
+                        $('.week[data-week="'+ week +'"]').addClass('showKey');
+                    }
+                    var keyText = key.text();
                     // remove % sign from percent value convert to px height
-                    barHeight = key.substring(0, key.length - 1)/10*4;
+                    barHeight = keyText.substring(0, keyText.length - 1)/10*4;
                     var unit = $(this).find('.unit').text();
                     switch (unit) {
                         case 'LST2BSL':
