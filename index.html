@@ -657,6 +657,29 @@
         function addToInfograph(week, barHeight, unit, swatch) {
             $('.week[data-week="'+ week +'"] .infograph').append('<li class="' + swatch +'" style="height: '+ barHeight +'px">'+ unit +'</li>');
         }
+
+        /*
+         * Auto select central week on scroll complete
+         */
+        // get number of weeks
+        var numWeeks = $('.week').length;
+            //console.log(numWeeks);
+        // get width of week elements
+        var weekWidth = $('.week').first().width();
+            //console.log(weekWidth);
+        // Scroll listner for semester weeks
+        $('.semester').scroll(function(){
+            // use timeout to check for scroll finsih https://gabrieleromanato.name/jquery-check-if-users-stop-scrolling
+            clearTimeout( $.data( this, "scrollCheck" ) );
+			$.data( this, "scrollCheck", setTimeout(function() {
+                // once scroll finsihed find position of first week element and use maths to work out which week element in view
+                var position = $('.week').first().position();
+				    //console.log(position.left);
+                var whosAtZero = Math.abs(Math.round(position.left/weekWidth))+1;
+                    //console.log(whosAtZero);
+                $('.week:eq('+whosAtZero+')').trigger('click');
+			}, 250) );
+        });
     });
     </script>
 
