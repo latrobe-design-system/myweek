@@ -667,6 +667,12 @@
         // get width of week elements
         var weekWidth = $('.week').first().width();
             //console.log(weekWidth);
+        // reset these variables on window resize
+        $( window ).resize(function() {
+            numWeeks = $('.week').length;
+            weekWidth = $('.week').first().width();
+        });
+
         // Scroll listner for semester weeks
         $('.semester').scroll(function(){
             // use timeout to check for scroll finsih https://gabrieleromanato.name/jquery-check-if-users-stop-scrolling
