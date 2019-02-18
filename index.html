@@ -75,6 +75,7 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
+        overflow-y: hidden;
     }
     .semester::-webkit-scrollbar {
         display: none;
@@ -97,14 +98,14 @@
         content: "";
         background-image: url(key-green.svg);
         background-repeat: no-repeat;
-        background-size: 28px;
+        background-size: 15% 15%;
         background-position: top 8px right 4px;
     }
     .week.selected {
         position: relative;
         background: #fff;
         overflow: visible;
-        transform: scale(1.1) translateY(3px);
+        /*transform: scale(1.1) translateY(3px);*/
     }
     .week.selected::before {
         content: "";
