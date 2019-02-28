@@ -23,7 +23,6 @@
         overflow-x: hidden;
         font-family: sans-serif;
         color: #333;
-        max-width: 500px;
     }
     main {
         padding-top: 16px;
@@ -58,7 +57,7 @@
         background-color: #bea24e;
     }
     .swatch5 {
-        background-color: #ddcea2/*#7bd4cc*/;
+        background-color: #ddcea2;
     }
 
     .pho-header {
@@ -165,10 +164,15 @@
         flex-direction: column;
     }
     tbody tr {
+        position: relative;
         display: flex;
         align-content: stretch;
         height: 80px;
         border-bottom: 1px solid #fff;
+        transition: 0.5s margin-bottom ease-in-out;
+    }
+    tbody tr.showDetails {
+        margin-bottom: 160px;
     }
     tbody td {
         vertical-align: middle;
@@ -192,7 +196,35 @@
         background-color: #f4f4f4;
         padding: 8px;
         flex: 1 0;
-        overflow-y: auto;
+        overflow-y: hidden;
+    }
+    .assessment-details {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 16px;
+    }
+    .assessment-details p {
+        font-size: 0.9em;
+        visibility: hidden;
+        margin-bottom: 4px;
+    }
+    .assessment-details::before {
+        content: "More \2193";
+        position: absolute;
+        top: -20px;
+        right: 4px;
+        display: block;
+        background: #222;
+        color: #fff;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        padding: 4px;
+        font-size: 12px;
+        line-height: 1;
+    }
+    tr.showDetails .assessment-details p {
+        visibility: visible;
     }
     tbody p {
         margin: 4px 0;
@@ -201,7 +233,7 @@
         font-size: 16px;
         font-weight: 100;
     }
-    p.assement-description {
+    p.assessment-description {
         font-size: 0.8em;
     }
     /* end page styles */
@@ -216,121 +248,87 @@
             <li class="week" data-week="week10">
                 <h3>Week 10</h3>
                 <p class="week-date-range">Mar 4 – 10</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week11">
                 <h3>Week 11</h3>
                 <p class="week-date-range">Mar 11 – 17</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week12">
                 <h3>Week 12</h3>
                 <p class="week-date-range">Mar 18 – 24</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week13">
                 <h3>Week 13</h3>
                 <p class="week-date-range">Mar 25 – 31</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week14">
                 <h3>Week 14</h3>
                 <p class="week-date-range">Apr 1 – 7</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week15">
                 <h3>Week 15</h3>
                 <p class="week-date-range">Apr 8 – 14</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week16">
                 <h3>Week 16</h3>
                 <p class="week-date-range">Apr 15 – 21</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week17">
                 <h3>Week 17</h3>
                 <p class="week-date-range">Apr 22 – 28</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week18">
                 <h3>Week 18</h3>
                 <p class="week-date-range">Apr 29 – May 5</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week19">
                 <h3>Week 19</h3>
                 <p class="week-date-range">May 6 – 12</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week20">
                 <h3>Week 20</h3>
                 <p class="week-date-range">May 13 – 19</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week21">
                 <h3>Week 21</h3>
                 <p class="week-date-range">May 20 – 26</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week22">
                 <h3>Week 22</h3>
                 <p class="week-date-range">May 27 – June 2</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week23">
                 <h3>Week 23</h3>
                 <p class="week-date-range">June 3 – 9</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week24">
                 <h3>Week 24</h3>
                 <p class="week-date-range">June 10 – 16</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week25">
                 <h3>Week 25</h3>
                 <p class="week-date-range">June 17 – 23</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
             <li class="week" data-week="week26">
-                <h3>Week 25</h3>
+                <h3>Week 26</h3>
                 <p class="week-date-range">June 24 – 30</p>
-                <ul class="infograph">
-
-                </ul>
+                <ul class="infograph"></ul>
             </li>
         </ul>
     </header>
@@ -349,14 +347,18 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                            <p class="assessment-description">Online quizzes (individual assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">4 x online quizzes (1,000 words equivalent). Formative assessment. This assessment will report on the Graduate Capability of Discipline-specific knowledge and skills.</p>
+                                <p class="ilo"><b>ILO:</b> 02, 05</p>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="key key-tut"></td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">Key tutorial<p>
+                            <p class="assessment-description">Key tutorial<p>
                         </td>
                     </tr>
                 </tbody>
@@ -374,7 +376,11 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                            <p class="assessment-description">Online quizzes (individual assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">4 x online quizzes (1,000 words equivalent). Formative assessment. This assessment will report on the Graduate Capability of Discipline-specific knowledge and skills.</p>
+                                <p class="ilo"><b>ILO:</b> 02, 05</p>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -390,7 +396,7 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                            <p class="assessment-description">Multiple choice quiz (1500 w)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -408,7 +414,11 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                            <p class="assessment-description">Online quizzes (individual assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">4 x online quizzes (1,000 words equivalent). Formative assessment. This assessment will report on the Graduate Capability of Discipline-specific knowledge and skills.</p>
+                                <p class="ilo"><b>ILO:</b> 02, 05</p>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -424,7 +434,7 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                            <p class="assessment-description">Multiple choice quiz (1500 w)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -442,7 +452,11 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Online quizzes (individual assessment)<p>
+                            <p class="assessment-description">Online quizzes (individual assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">4 x online quizzes (1,000 words equivalent). Formative assessment. This assessment will report on the Graduate Capability of Discipline-specific knowledge and skills.</p>
+                                <p class="ilo"><b>ILO:</b> 02, 05</p>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -458,7 +472,7 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                            <p class="assessment-description">Multiple choice quiz (1500 w)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -476,7 +490,7 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">Multiple choice quiz (1500 w)<p>
+                            <p class="assessment-description">Multiple choice quiz (1500 w)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -494,7 +508,7 @@
                         <td class="key">20%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">One 1,500-word Common Law assignment to be submitted online<p>
+                            <p class="assessment-description">One 1,500-word Common Law assignment to be submitted online<p>
                         </td>
                     </tr>
                 </tbody>
@@ -512,7 +526,11 @@
                         <td class="key">30%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Sport organisation policy analysis (group assessment)<p>
+                            <p class="assessment-description">Sport organisation policy analysis (group assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">Group analysis of a sport organisation policy  (Part A: 10-minute presentation + Part B: Written report [500-words per student] ). Summative assessment. This assessment will report on the Graduate Capabilities of: Quantitative Literacy, and Inquiry/Research.</p>
+                                <p class="ilo"><b>ILO:</b> 01, 03, 06</p>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -530,7 +548,7 @@
                         <td class="key">40%</td>
                         <td class="description">
                             <p class="unit">MGT2SDT</p>
-                            <p class="assement-description">Sport development program plan (equivalent  2000 words per student)<p>
+                            <p class="assessment-description">Sport development program plan (equivalent  2000 words per student)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -554,7 +572,7 @@
                         <td class="key">60%</td>
                         <td class="description">
                             <p class="unit">MGT2SDT</p>
-                            <p class="assement-description">Individual paper (2500 words)<p>
+                            <p class="assessment-description">Individual paper (2500 words)</p>
                         </td>
                     </tr>
                 </tbody>
@@ -572,14 +590,18 @@
                         <td class="key">50%</td>
                         <td class="description">
                             <p class="unit">MGT2SPF</p>
-                            <p class="assement-description">Government sport policy analysis (individual assessment)<p>
+                            <p class="assessment-description">Government sport policy analysis (individual assessment)</p>
+                            <div class="assessment-details">
+                                <p class="comment">,500-word individual analysis of 7 x government sport policies. Summative assessment. This assessment will report on the Graduate Capability of Critical Thinking.</p>
+                                <p class="ilo"><b>ILO:</b> 04</p>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="key">60%</td>
                         <td class="description">
                             <p class="unit">LST2BSL</p>
-                            <p class="assement-description">One 2-hour final examination<p>
+                            <p class="assessment-description">One 2-hour final examination<p>
                         </td>
                     </tr>
                 </tbody>
@@ -657,6 +679,10 @@
         function addToInfograph(week, barHeight, unit, swatch) {
             $('.week[data-week="'+ week +'"] .infograph').append('<li class="' + swatch +'" style="height: '+ barHeight +'px">'+ unit +'</li>');
         }
+
+        $('tbody tr').on('click', function(){
+            $(this).toggleClass('showDetails');
+        });
 
         /*
          * Auto select central week on scroll complete
