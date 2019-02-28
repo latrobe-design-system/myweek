@@ -202,12 +202,14 @@
         position: absolute;
         top: 100%;
         left: 0;
+        right: 0;
         padding: 16px;
     }
     .assessment-details p {
         font-size: 0.9em;
         visibility: hidden;
         margin-bottom: 4px;
+        transition: visibility 0.25s;
     }
     .assessment-details::before {
         content: "More \2193";
@@ -225,6 +227,7 @@
     }
     tr.showDetails .assessment-details p {
         visibility: visible;
+        transition-delay: 0.25s;
     }
     tbody p {
         margin: 4px 0;
