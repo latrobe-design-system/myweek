@@ -153,6 +153,7 @@
     }
     table {
         width: 100%;
+        border-bottom: 20px solid #f2f2f2;
     }
     thead td {
         background-color: #fff;
@@ -361,8 +362,7 @@
                             <p class="unit">LST2BSL</p>
                             <p class="assessment-description">Key tutorial<p>
                             <div class="assessment-details">
-                                <p class="comment">4 x online quizzes (1,000 words equivalent). Formative assessment. This assessment will report on the Graduate Capability of Discipline-specific knowledge and skills.</p>
-                                <p class="ilo"><b>ILO:</b> 02, 05</p>
+                                <p class="comment">You should turn up for this one!</p>
                             </div>
                         </td>
                     </tr>
@@ -623,25 +623,6 @@
     <script>
     $('documment').ready(function(){
         /*
-         * Event hadler for click on week
-         */
-        $('.week').on('click', function() {
-            if ($(this).hasClass('selected') == false) {
-                var week = $(this).attr('data-week');
-                $('.week').removeClass('selected');
-                $(this).addClass('selected');
-                $('.details').fadeOut().promise().done(function() {
-                    $('#' + week).fadeIn();
-                });
-            }
-        });
-        /*
-         * Trigger event hadler for click on week to show current week
-         * -- This is triggering week 10 for demo
-         */
-        $('.week[data-week="week11"]').trigger('click');
-
-        /*
          * Build infograph from week details table
          * Set color of table based on subject
          */
@@ -685,8 +666,33 @@
             $('.week[data-week="'+ week +'"] .infograph').append('<li class="' + swatch +'" style="height: '+ barHeight +'px">'+ unit +'</li>');
         }
 
-        $('tbody tr').on('click', function(){
-            $(this).toggleClass('showDetails');
+        /*
+         * Event hadler for click on week
+         */
+        $('.week').on('click', function() {
+            if ($(this).hasClass('selected') == false) {
+                var week = $(this).attr('data-week');
+                $('.week').removeClass('selected');
+                $(this).addClass('selected');
+                $('.details').fadeOut().promise().done(function() {
+                    $('#' + week).fadeIn();
+                });
+            }
+        });
+
+        /*
+         * Trigger event hadler for click on week to show current week
+         * -- This is triggering week 10 for demo
+         */
+        $('.week[data-week="week11"]').trigger('click');
+
+        /*
+         * Event handler for click on row to show more details
+         */
+        $('tbody > tr').on('click', function(){
+            if ($(this).find('.assessment-details').length) {
+                $(this).toggleClass('showDetails');
+            }
         });
 
         /*
@@ -704,7 +710,7 @@
             weekWidth = $('.week').first().width();
         });
 
-        // Scroll listner for semester weeks
+        // Scroll listner for semester weeks to select week centered in view
         $('.semester').scroll(function(){
             // use timeout to check for scroll finsih https://gabrieleromanato.name/jquery-check-if-users-stop-scrolling
             clearTimeout( $.data( this, "scrollCheck" ) );
