@@ -82,6 +82,7 @@
         display: none;
     }
     .week {
+        position: relative;
         flex: none;
         display: flex;
         flex-direction: column;
@@ -95,26 +96,31 @@
         scroll-snap-align: center;
         cursor: pointer;
     }
-    .week.showKey:before {
+    .week::before {
         content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .week.showKey:before {
         background-image: url(key-green.svg);
         background-repeat: no-repeat;
         background-size: 15% 15%;
         background-position: top 8px right 4px;
     }
     .week.selected {
-        position: relative;
         background: #fff;
         overflow: visible;
         /*transform: scale(1.1) translateY(3px);*/
     }
     .week.selected::before {
-        content: "";
-        position: absolute;
-        top: 1px;
-        right: 3px;
-        bottom: 5px;
-        left: 3px;
+        top: 0;
+        right: -1px;
+        bottom: 0;
+        left: -1px;
+        z-index: 10;
         box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.6);
     }
     .week h3 {
