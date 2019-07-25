@@ -1,2 +1,4 @@
 # myweek prototype
-https://latrobe-ict-web.github.io/myweek/
+https://latrobe-design-system.github.io/myweek/
+
+myweek prototype
